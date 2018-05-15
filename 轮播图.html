@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			li {
+				list-style: none;
+			}
+			
+			.slider {
+				width: 680px;
+				height: 344px;
+				margin: 20px auto 0;
+				overflow: hidden;
+				position: relative;
+			}
+			.slider ul {
+				width: 10000px;
+				height: 344px;
+				position: absolute;
+			}
+			.slider ul li {
+				float: left;
+			}
+			
+			.slider dl {
+				position: absolute;
+				left: 0;
+				bottom: 10px;
+				width: 100%;
+				text-align: center;
+			}
+			.slider dl dd {
+				display: inline-block;
+				width: 14px;
+				height: 14px;
+				border-radius: 50%;
+				background: #f0f0f0;
+				margin: 0 4px;
+				cursor: pointer;
+			}
+			.slider dl dd.selected {
+				background: #ff6600;
+			}
+			.btn {
+				width: 40px;
+				height: 80px;
+				background: rgba(255, 255, 255, 0.7);
+				position: absolute;
+				top: 120px;
+				text-align: center;
+				line-height: 80px;
+				font-size: 30px;
+				color: #333;
+				cursor: pointer;
+			}
+			.left_btn {
+				left: 0;
+			}
+			.right_btn {
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="slider">
+			<ul>
+				<li>
+					<img src="images/1.jpg"> 
+				</li>
+				<li>
+					<img src="images/2.jpg"> 
+				</li>
+				<li>
+					<img src="images/3.jpg"> 
+				</li>
+				<li>
+					<img src="images/4.jpg"> 
+				</li>
+			</ul>
+			<dl></dl>
+			<span class="btn left_btn"><</span>
+			<span class="btn right_btn">></span>
+		</div>
+		
+		<input type="button" value="移除组件" id="btn1">
+		
+		<script src="js/jquery-1.10.2.js"></script>
+		<script src="js/velocity.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/slider.js"></script>
+		<script>
+			var oSlider = new KG.WYJ.Slider({
+				$slideWrapper: $('.slider'),
+				$slideDotWrapper: $('.slider > dl'), // 可选参数
+				$aSlideArrow: [$('.left_btn'), $('.right_btn')], // 可选参数
+				curIndex: 0,
+				autoPlay: true,
+				callback: function(v){
+					console.log(v);
+				}
+			});
+			oSlider.init();
+			
+			
+			$('#btn1').on('click', function(){
+				oSlider.remove();
+			});
+		</script>
+	</body>
+</html>
